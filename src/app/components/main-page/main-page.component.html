@@ -1,7 +1,7 @@
 <div
   fxLayout="column"
   fxLayoutGap="25px"
-  [ngClass]="'mt-40 mx-260'"
+  [ngClass]="'mt-40 container'"
   [ngClass.sm]="'m-1'"
   [ngClass.xs]="'m-1'"
 >
@@ -18,13 +18,13 @@
 
   <!-- List Item -->
   <div *ngFor="let list of allTodos$ | async" fxLayout="row">
-    <div fxFlex="90">
+    <div fxFlex="99" fxFlex.sm="90" fxFlex.xs="90">
       <app-list-item
         [list]="list"
         (click)="onToggleCheck(list)"
       ></app-list-item>
     </div>
-    <div fxFlex="10">
+    <div fxFlex="1" fxFlex.sm="10" fxFlex.xs="10">
       <app-delete (click)="onDeleteTodo()"></app-delete>
     </div>
   </div>

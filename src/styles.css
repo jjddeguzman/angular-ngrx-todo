@@ -20,3 +20,8 @@ body {
 .mt-40 {
   margin-top: 40px;
 }
+
+.container {
+  margin-left: 350px;
+  margin-right: 350px;
+}
