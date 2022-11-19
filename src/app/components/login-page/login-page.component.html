@@ -1,0 +1,23 @@
+<div
+  fxLayout="column"
+  fxLayoutGap="25px"
+  [ngClass]="'mt-40 mx-260'"
+  [ngClass.sm]="'m-1'"
+  [ngClass.xs]="'m-1'"
+>
+  <h1 [ngStyle]="{ 'text-align': 'center' }">Welcome</h1>
+  <label>username:</label>
+  <form action="">
+    <input [ngStyle]="{ width: '100%', height: '2rem' }" type="text" />
+  </form>
+  <label for="">password:</label>
+  <form action="">
+    <input [ngStyle]="{ width: '100%', height: '2rem' }" type="text" />
+  </form>
+
+  <app-button
+    buttonTitle="Login"
+    buttonColor=""
+    (onSubmit)="login()"
+  ></app-button>
+</div>

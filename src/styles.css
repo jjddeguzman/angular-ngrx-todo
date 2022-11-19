@@ -1,0 +1,22 @@
+/* Add application styles & imports to this file! */
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Rubik', sans-serif;
+}
+
+.m-1 {
+  margin: 1rem;
+}
+
+.mx-260 {
+  margin-left: 260px;
+  margin-right: 260px;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
