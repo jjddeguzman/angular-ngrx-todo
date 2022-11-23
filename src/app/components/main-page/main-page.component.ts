@@ -1,7 +1,7 @@
 import { Component, OnInit, VERSION } from '@angular/core';
 import { Store } from '@ngrx/store';
+import Swal from 'sweetalert2';
 import { ApiService } from '../../api.service';
-import { MOCK_DATA } from '../../mock-data';
 import { addTodo, loadTodos } from '../../state/todo.action';
 import { selectAllTodos } from '../../state/todo.selector';
 
@@ -14,12 +14,16 @@ export class MainPageComponent implements OnInit {
   public allTodos$ = this.store.select(selectAllTodos);
   public todo = '';
   data: any = [];
+  content: any;
   constructor(private api: ApiService, private store: Store) {}
   ngOnInit() {
-    this.data = MOCK_DATA;
+    // this.data = MOCK_DATA;
     this.store.dispatch(loadTodos());
     this.allTodos$.subscribe((res) => {
-      console.log(res);
+      res.forEach((data) => {
+        this.content = data.content;
+      });
+      // this.content = res.content;
     });
   }
 
@@ -33,5 +37,19 @@ export class MainPageComponent implements OnInit {
     list.isChecked = !list.isChecked;
   }
 
-  onDeleteTodo() {}
+  onDeleteTodo(list: any) {
+    Swal.fire({
+      title: `Do you want to remove task?`,
+      text: `${list.content}`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+      }
+    });
+  }
 }

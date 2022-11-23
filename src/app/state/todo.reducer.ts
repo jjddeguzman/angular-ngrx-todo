@@ -1,6 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
 import { ITodo } from '../interface/model';
-import { MOCK_DATA } from '../mock-data';
 import {
   addTodo,
   removeTodo,
@@ -8,7 +7,6 @@ import {
   loadTodosSuccess,
   loadTodosFailure,
 } from './todo.action';
-import { Todo } from './todo.model';
 
 export interface TodoState {
   todos: ITodo[];
@@ -25,18 +23,10 @@ export const initialState: TodoState = {
 export const todoReducer = createReducer(
   // Supply the initial state
   initialState,
-  // Add the new todo to the todos array
-  on(addTodo, (state, { content }) => ({
-    ...state,
-    todos: [...state.todos, { id: Date.now().toString(), content: content }],
-  })),
-  // Remove the todo from the todos array
-  on(removeTodo, (state, { id }) => ({
-    ...state,
-    todos: state.todos.filter((todo) => todo.id !== id),
-  })),
+
   // Trigger loading the todos
   on(loadTodos, (state) => ({ ...state, status: 'loading' })),
+
   // Handle successfully loaded todos
   on(loadTodosSuccess, (state, { todos }) => ({
     ...state,
@@ -49,5 +39,17 @@ export const todoReducer = createReducer(
     ...state,
     error: error,
     status: 'error',
+  })),
+
+  // Add the new todo to the todos array
+  on(addTodo, (state, { content }) => ({
+    ...state,
+    todos: [...state.todos, { id: Date.now().toString(), content: content }],
+  })),
+
+  // Remove the todo from the todos array
+  on(removeTodo, (state, { id }) => ({
+    ...state,
+    todos: state.todos.filter((todo) => todo.id !== id),
   }))
 );

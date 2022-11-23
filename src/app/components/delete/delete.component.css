@@ -1,5 +1,10 @@
 .cross {
-  color: red;
+  color: rgb(255, 46, 46);
   font-weight: 600;
   font-size: 120%;
+  cursor: pointer;
+}
+
+.cross:hover {
+  color: red;
 }
